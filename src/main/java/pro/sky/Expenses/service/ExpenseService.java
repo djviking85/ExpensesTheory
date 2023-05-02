@@ -2,6 +2,7 @@ package pro.sky.Expenses.service;
 
 import org.springframework.stereotype.Service;
 import pro.sky.Expenses.model.Expense;
+import pro.sky.Expenses.model.ExpenseByCategory;
 import pro.sky.Expenses.repository.ExpenseRepository;
 
 import java.util.List;
@@ -21,5 +22,8 @@ public class ExpenseService {
     }
     public void deleteExpense(Integer id) {
         expenseRepository.deleteById(id);
+    }
+    public List<ExpenseByCategory> getExpensesByCategory() {
+        return expenseRepository.getExpenseByCategory();
     }
 }
