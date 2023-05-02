@@ -1,5 +1,6 @@
 package pro.sky.Expenses.service;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pro.sky.Expenses.model.Expense;
 import pro.sky.Expenses.model.ExpenseByCategory;
@@ -13,8 +14,9 @@ public class ExpenseService {
     public ExpenseService(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
-    public List<Expense> getAllExpense() {
-        return expenseRepository.findAll();
+    public List<Expense> getAllExpense(Integer pageNumber, Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        return expenseRepository.findAll(pageRequest).getContent();
     }
     public void createExpense(Expense expense) {
         expenseRepository.save(expense);
